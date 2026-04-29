@@ -1,3 +1,5 @@
+package com.blacktea.everyshare.demo;
+
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -84,7 +86,7 @@ public class DeviceDiscovery {
             InetAddress broadcastAddress = InetAddress.getByName("255.255.255.255");
 
             while (true) {
-                String message = "Hello! 我的ID是: " + DEVICE_ID;
+                String message = "EveryShare:" + DEVICE_ID;
                 byte[] buffer = message.getBytes();
 
                 // 把信息装入数据包

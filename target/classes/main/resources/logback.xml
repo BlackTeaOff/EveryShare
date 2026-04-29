@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- Appender 决定日志往哪输出。STDOUT 代表标准输出（控制台） -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <!-- pattern 定义了每一行日志长什么样 -->
+            <!-- %d: 时间 | [%thread]: 哪个线程发出的 | %highlight: 级别带颜色 | %cyan: 类名带颜色 | %msg: 内容 -->
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %highlight(%-5level) %cyan(%logger{36}) - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Root 是总开关 -->
+    <!-- level="INFO" 表示：只有 INFO、WARN、ERROR 级别的日志会显示，DEBUG 和 TRACE 会被隐藏 -->
+    <root level="DEBUG">
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>
