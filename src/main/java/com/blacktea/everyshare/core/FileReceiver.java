@@ -7,6 +7,7 @@ import java.io.File;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+// 全局常驻服务, 只创建一次
 public class FileReceiver {
     private static final Logger log = LoggerFactory.getLogger(FileReceiver.class);
 
@@ -15,6 +16,7 @@ public class FileReceiver {
     private static final int TCP_PORT = 9999;
 
     // 不同平台路径不同, FileReceiver只负责传文件, 路径需要调用者传入
+    // 修改saveDir只能重启FileReceiver服务(final)
     private final String saveDir;
 
     public FileReceiver(String saveDir) {
