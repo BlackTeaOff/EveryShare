@@ -3,7 +3,9 @@ package com.blacktea.everyshare.core;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.DataInputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -17,17 +19,14 @@ public class FileReceiver {
 
     // 不同平台路径不同, FileReceiver只负责传文件, 路径需要调用者传入
     // 修改saveDir只能重启FileReceiver服务(final)
-    private final String saveDir;
+    private final String SAVE_DIR;
 
     public FileReceiver(String saveDir) {
-        this.saveDir = saveDir;
+        this.SAVE_DIR = saveDir;
     }
 
-    // 设计协议
-    // A->B发文件, B需要先知道: 文件名 文件大小
-
     public void start() {
-        File dir = new File(saveDir);
+        File dir = new File(SAVE_DIR);
         if (!dir.exists()) {
             if (!dir.mkdirs()) {
                 log.error("无法创建目录");
@@ -45,11 +44,46 @@ public class FileReceiver {
                     Socket socket = serverSocket.accept();
                     String senderIp = socket.getInetAddress().getHostAddress();
                     log.info("设备已连接! IP: {}", senderIp);
+
+                    // 开启新线程传输, 同时继续监听请求
+                    new Thread(() -> handleFileReceive(socket)).start();
                 }
 
             } catch (Exception e) {
                 log.error("TCP接收端异常", e);
             }
         }).start();
+    }
+
+    // 对于每一个传输任务, 开启一个新线程处理, 各传输任务互不影响
+    private void handleFileReceive(Socket socket) {
+        // DataInputStream操作InputStream, 方便读取各种基本数据类型(int, long, String)
+        try (DataInputStream dis = new DataInputStream(socket.getInputStream())) {
+            // 根据协议, 先传文件名, 之后传文件大小, 最后传文件
+            String fileName = dis.readUTF();
+
+            long fileLength = dis.readLong();
+
+            log.info("准备接收文件: [{}], 大小: {} Bytes", fileName, fileLength);
+
+            File saveFile = new File(SAVE_DIR + fileName);
+
+            // 从socket输出流, 写入文件输出流
+            try (FileOutputStream fos = new FileOutputStream(saveFile)) {
+                byte[] buffer = new byte[8192];
+                int readBytes;
+                long totalRead = 0;
+
+                while ((readBytes = dis.read(buffer)) != -1) {
+                    fos.write(buffer, 0, readBytes);
+                    totalRead += readBytes;
+                }
+                log.info("文件接收成功, 保存至: {}, 总大小: {}", saveFile.getAbsolutePath(), totalRead);
+            } catch (Exception e) {
+                log.error("文件接收失败", e);
+            }
+        } catch (Exception e) {
+            log.error("文件接收失败", e);
+        }
     }
 }

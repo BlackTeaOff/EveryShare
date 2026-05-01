@@ -11,7 +11,7 @@
 
     <!-- Root 是总开关 -->
     <!-- level="INFO" 表示：只有 INFO、WARN、ERROR 级别的日志会显示，DEBUG 和 TRACE 会被隐藏 -->
-    <root level="DEBUG">
+    <root level="INFO">
         <appender-ref ref="STDOUT" />
     </root>
 </configuration>
