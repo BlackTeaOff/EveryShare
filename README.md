@@ -1,10 +1,12 @@
 # EveryShare
 
----
+![Java Version](https://img.shields.io/badge/Java-17+-blue.svg)
+![Platform](https://img.shields.io/badge/Platform-Desktop%20%7C%20Android%20%7C%20Web-lightgrey.svg)
+![License](https://img.shields.io/badge/License-MIT-green.svg)
 
 > 注意: 本项目仍处于初期阶段, 请勿在工作环境下使用!
 
-## 一. 项目简介
+## 项目简介
 
 EveryShare是一个基于局域网的, 跨平台的互传应用程序。
 
@@ -15,38 +17,36 @@ EveryShare是一个基于局域网的, 跨平台的互传应用程序。
 - **Share EveryWay**
 
 ### 1. EveryWhere
-无论何时何地, 只要有两部终端(~~至少能联网~~)就可以互相Share
+无论何时何地, 只要有两部终端(~~至少能联在同一个局域网~~)就可以互相Share
 
 最基本的要求, 已经有很多优秀的开源项目实现了这一点(如: [LocalSend](https://github.com/localsend/localsend))
 
 ### 2. EveryThing
 不局限于传输文件
 
-希望它能实现**近距离安卓音频共享**:
+未来希望它能实现**近距离安卓音频共享**:
 
 想和熟人一起收听手机里的音频？
 
 或是随便找一个附近的陌生人一起听歌？聊天？
 
-它**也许**能解决这个问题, 但目前还只是有一个想法而已
+它**也许**能解决这个问题, 敬请期待!
 
 ### 3. EveryWay
 
-市面上的这些互传软件早就玩腻了吧？
-
-一般都是在页面上选要连接的设备
+市面上的这些互传软件选设备太无聊？
 
 如果加上**NFC一碰连**的话, 会不会更有趣呢？(~~虽然好像已经有这样的技术了。不管, 我要做一个试试！~~)
 
 > 以上提到的功能不一定都能实现, 也可能一个都实现不了(~~hahaha~~)
 > 
-> 没有了动力就会烂尾, 有了star就有动力！！！（明示......）
+> 没有了动力就会烂尾, 有了star就有动力！！！（疯狂明示......）
 
-## 二. 架构设计
+## 架构设计
 
 ### 项目结构
 
-- core: Java网络底层传输逻辑, 提供接口给其他平台使用
+- core: Java网络底层传输逻辑, 封装发现与传输逻辑, 提供统一接口
 - desktop: PC端平台
 - android: 移动端平台
 - web: 浏览器平台
@@ -56,22 +56,56 @@ EveryShare是一个基于局域网的, 跨平台的互传应用程序。
 - UDP: 用于发现附近的设备
 - TCP: 传输数据
 
-### 三. TODO
+## Getting Started
+
+### QQQQQuickStart
+1. 确保已安装JDK 17+
+2. 前往[Release](https://github.com/BlackTeaOff/EveryShare/releases/tag/v0.1.0-alpha)里下载最新的`everyshare-0.1.0-alpha-jar-with-dependencies.jar`
+3. 在终端/命令行运行`java -jar everyshare-0.1.0-alpha-jar-with-dependencies.jar`
+4. 放心! 绝对不会有病毒的！(~~如果你觉得有, 那你太高估我了...~~)
+5. 虽然没有病毒, 但是有BUG啊...(~~其实也算一种另类的病毒?！~~)
+
+### SSSSSlowStart
+1. 确保已安装JDK 17+和Maven
+2. 克隆项目到本地
+
+    ```git clone https://github.com/BlackTeaOff/EveryShare.git```
+
+3. 使用IDE打开项目, 等待Maven下载依赖 
+4. 运行`/src/main/java/com/blacktea/everyshare/demo/Terminal.java`
+5. 开始体验EveryShare最最最最最DEMO的版本吧！(~~别抱太高期望哦~~)
+
+### TODO
 
 - [X] DiscoveryService
-- [ ] FileReceiver
-- [ ] FileSender
+- [X] FileReceiver
+- [X] FileSender
+- [ ] 提取Receiver和Sender内传输流逻辑
+- [ ] 写一个更漂亮的Terminal！(带进度条的那种！)
 - [ ] ...未完待续
-- [ ] CLI
 - [ ] Desktop
 - [ ] Android
 - [ ] Web
+- [ ] 断点续传
+- [ ] 文件夹传输
+- [ ] Android音频共享
+
+## Contribution
+看到这里的人, 我要! 感谢! 你!!!
+
+如果你对本项目感兴趣, 欢迎任何形式的贡献~
+
+- 看完README并在心里给作者默默加油~
+- 遇到BUG, 提Issue~
+- 有新点子, 提Issue~
+- Fork/PR, ~~没用过~~ ~(不过可以试试)
+- 或给个Star, 这是对我最最直接的支持!
 
 > 写在最后:
 > 
-> 也许是第一次自己开始做规模比较大, 完整的项目吧。(~~有点紧张~~)
+> 也许这是我第一次自己开始做一个规模比较大, 完整的项目吧。(~~有点紧张~~)
 > 
-> 不知道这个项目的结局会是怎样......
+> 不知道它的结局会是怎样......
 > 
 > 虽然但是, 无论如何, 继续加油吧~
 > 
