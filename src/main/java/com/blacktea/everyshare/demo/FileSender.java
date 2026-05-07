@@ -1,5 +1,6 @@
-package com.blacktea.everyshare.core;
+package com.blacktea.everyshare.demo;
 
+import com.blacktea.everyshare.core.TransferListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -1,4 +1,4 @@
-package com.blacktea.everyshare.core;
+package com.blacktea.everyshare.demo;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
