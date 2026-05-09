@@ -46,7 +46,7 @@ EveryShare是一个基于局域网的, 跨平台的互传应用程序。
 
 ### 项目结构
 
-- core: Java网络底层传输逻辑, 封装发现与传输逻辑, 提供统一接口
+- core: Javalin(轻量Http服务器)实现网络底层传输逻辑, 封装发现与传输逻辑, 提供统一接口
 - desktop: PC端平台
 - android: 移动端平台
 - web: 浏览器平台
@@ -54,6 +54,7 @@ EveryShare是一个基于局域网的, 跨平台的互传应用程序。
 ### 通信协议
 
 - UDP: 用于发现附近的设备
+- HTTP: 通用通信协议
 - TCP: 传输数据
 
 ## Getting Started
@@ -80,15 +81,39 @@ EveryShare是一个基于局域网的, 跨平台的互传应用程序。
 - [X] DiscoveryService
 - [X] FileReceiver
 - [X] FileSender
-- [ ] 提取Receiver和Sender内传输流逻辑
+- [ ] 用Javalin重构Sender & Receiver
 - [ ] 写一个更漂亮的Terminal！(带进度条的那种！)
 - [ ] ...未完待续
 - [ ] Desktop
 - [ ] Android
 - [ ] Web
 - [ ] 断点续传
+- [ ] NFC一碰传
 - [ ] 文件夹传输
 - [ ] Android音频共享
+
+## Developer Log
+为了让README不太无聊, 从这次commit开始
+
+我决定在这里加一个Developer Log, 记录我开发过程中的一些碎碎念
+
+以下是碎碎念示例:
+
+`2026/5/9` 
+
+项目刚刚做起来, 竟然要重构了？？！！
+
+Sender和Receiver都要重写......
+
+不过也还好吧, 毕竟还没走太远
+
+还是学习学习LocalSend吧, 内置一个HTTP服务器要比Java的Socket好多了
+
+几乎所有的平台都支持HTTP协议, 如果写Web端的话, 也会很方便
+
+So......
+
+~~Life is short, I use HTTP (笑~~
 
 ## Contribution
 看到这里的人, 我要! 感谢! 你!!!
@@ -96,8 +121,8 @@ EveryShare是一个基于局域网的, 跨平台的互传应用程序。
 如果你对本项目感兴趣, 欢迎任何形式的贡献~
 
 - 看完README并在心里给作者默默加油~
-- 遇到BUG, 提Issue~
-- 有新点子, 提Issue~
+- 遇到BUG, 请提Issue(目前可能还真找不出什么bug)
+- 有新点子, 也可以提Issue
 - Fork/PR, ~~没用过~~ ~(不过可以试试)
 - 或给个Star, 这是对我最最直接的支持!
 
