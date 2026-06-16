@@ -84,6 +84,9 @@ EveryShare是一个基于局域网的, 跨平台的互传应用程序。
 - [ ] 用Javalin重构Sender & Receiver
 - [ ] 写一个更漂亮的Terminal！(带进度条的那种！)
 - [ ] ...未完待续
+- [ ] 实现远程ipv6传输
+- [ ] 加Xray-core
+- [ ] 加Reality协议
 - [ ] Desktop
 - [ ] Android
 - [ ] Web
