@@ -61,8 +61,8 @@ EveryShare是一个基于局域网的, 跨平台的互传应用程序。
 
 ### QQQQQuickStart
 1. 确保已安装JDK 17+
-2. 前往[Release](https://github.com/BlackTeaOff/EveryShare/releases/tag/v0.1.0-alpha)里下载最新的`everyshare-0.1.0-alpha-jar-with-dependencies.jar`
-3. 在终端/命令行运行`java -jar everyshare-0.1.0-alpha-jar-with-dependencies.jar`
+2. 前往[Release](https://github.com/BlackTeaOff/EveryShare/releases/tag/v0.1.0-alpha)里下载最新的`everyshare-0.2.0-alpha-jar-with-dependencies.jar`
+3. 在终端/命令行运行`java -jar everyshare-0.2.0-alpha-jar-with-dependencies.jar`
 4. 放心! 绝对不会有病毒的！(~~如果你觉得有, 那你太高估我了...~~)
 5. 虽然没有病毒, 但是有BUG啊...(~~其实也算一种另类的病毒?！~~)
 
@@ -73,7 +73,7 @@ EveryShare是一个基于局域网的, 跨平台的互传应用程序。
     ```git clone https://github.com/BlackTeaOff/EveryShare.git```
 
 3. 使用IDE打开项目, 等待Maven下载依赖 
-4. 运行`/src/main/java/com/blacktea/everyshare/demo/Terminal.java`
+4. 运行`/src/main/java/com/blacktea/everyshare/demo/HttpTerminal.java`
 5. 开始体验EveryShare最最最最最DEMO的版本吧！(~~别抱太高期望哦~~)
 
 ### TODO
@@ -81,19 +81,21 @@ EveryShare是一个基于局域网的, 跨平台的互传应用程序。
 - [X] DiscoveryService
 - [X] FileReceiver
 - [X] FileSender
-- [ ] 用Javalin重构Sender & Receiver
-- [ ] 写一个更漂亮的Terminal！(带进度条的那种！)
-- [ ] ...未完待续
+- [X] 用Javalin重构Sender & Receiver
+- [X] 写一个更漂亮的Terminal！(带进度条的那种！)
+- [ ] 完善GET接口
+- [ ] 整理Terminal输出
 - [ ] 实现远程ipv6传输
 - [ ] 加Xray-core
 - [ ] 加Reality协议
 - [ ] Desktop
 - [ ] Android
 - [ ] Web
-- [ ] 断点续传
 - [ ] NFC一碰传
 - [ ] 文件夹传输
 - [ ] Android音频共享
+- [ ] 共享更多！(远程桌面, 串流等等)
+- [ ] 未完待续...
 
 ## Developer Log
 为了让README不太无聊, 从这次commit开始
@@ -101,6 +103,32 @@ EveryShare是一个基于局域网的, 跨平台的互传应用程序。
 我决定在这里加一个Developer Log, 记录我开发过程中的一些碎碎念
 
 以下是碎碎念示例:
+
+### `2026/7/24`
+
+再见面竟然是2个月以后了吗...
+
+不多说了, 这次正式的汇报一下进度吧！
+
+用 Javalin 重构了整个项目, 传文件的协议换成了 HTTP.
+
+加上了传输进度接口 `ProgressListener`.
+
+写了一个装饰器类 `ProgrssInputStream`, 调用流传输数据的时候用它向 `ProgressListener` 汇报进度数据.
+
+Terminal 换成了 HttpTerminal
+
+好像就这些了.
+
+接下来...
+
+重点放在打通远距离高速传输.
+
+不多说了, 我试试看！
+
+(对了, 近距离安卓音频共享已经有人实现了, 真快啊..)
+
+![贴张效果图](images/v0.2.0-alpha.png)
 
 ### `2026/6/4`
 
